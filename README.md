@@ -1,9 +1,9 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- Luigi Ribeiro Ferreira
+- Carina Santos Ferreira 
+- Guilherme Trentini Feijo 
 
 Link do Surge: www.link.com.br
 
