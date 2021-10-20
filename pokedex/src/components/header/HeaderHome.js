@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
+import styled, {keyframes} from "styled-components";
 import ImagemPokebola from "../../img/pokebola.png"
-import { Header } from "./styledHeader";
-
+import { Header, RedTransition} from "./styledHeader";
 
 
 
@@ -13,11 +13,15 @@ const goToPokedex = () => {
 }
 
     return(
-        <Header>
-            <button onClick={goToPokedex}><b>Pokedex</b></button>
-            <h1>Pokemon list</h1>
-            <img src = {ImagemPokebola}></img>
-        </Header>
+        <div>
+            <Header>
+                <button onClick={goToPokedex}><b>Pokedex</b></button>
+                <h1>Pokémons</h1>
+                <img src = {ImagemPokebola}></img>
+            </Header>
+            <RedTransition></RedTransition>
+        </div>
+        
     )
 }
 export default HeaderHome;

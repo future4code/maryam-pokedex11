@@ -1,4 +1,47 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
+
+const animationTop = keyframes`
+0%{
+    
+    height: 86px;
+    z-index:6;
+}
+40%{
+    height: 50vh;
+    z-index:6;
+    
+    
+
+}
+80%{
+    height: 86px;
+    z-index:6;
+    opacity: 1.0;
+    
+}
+100%{
+    opacity:0;
+}
+`
+
+
+export const RedTransition = styled.div`
+height: 86px;
+width: 100vw;
+
+z-index: -1;
+
+position:absolute;
+top: 0;
+
+
+
+background-color: #ED3237;
+animation-name: ${animationTop};
+border-bottom: 5px solid black;
+animation-duration: 3s;
+
+`
 
 export const Header = styled.div`
 display: flex;
@@ -6,6 +49,9 @@ align-items: center;
 justify-content: space-between;
 background-color: #ED3237;
 padding: 0 15px;
+height: 86px;
+border-bottom: 5px solid black;
+
 img{
     width: 60px;
 }
