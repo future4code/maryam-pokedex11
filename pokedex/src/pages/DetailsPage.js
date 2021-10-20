@@ -1,5 +1,14 @@
 import HeaderDetails from "../components/header/HeaderDetails";
 import styled from "styled-components";
+import { Body } from "./styledPage";
+import Footer from "../components/footer/Footer";
+import { useHistory, useParams } from "react-router-dom";
+import axios from "axios";
+import { useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
+
+import react, {useEffect, useState} from "react";
+
 
 const ContainerDetails = styled.div`
 width: 100vw;
@@ -37,48 +46,74 @@ const ContainerMoves = styled.div`
 `
 
 const DetailsPage = () => {
+    const {states, setters, requests} = useContext(GlobalContext)
+    const params = useParams();
+    const [pokemonInfo, setPokemonInfo] = useState({})
+
+
+
+    
+    useEffect(() => {
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${params.name}`).then((res) => {
+
+            console.log("deu certo", params.name)
+
+            console.log(res.data)
+            setPokemonInfo(res.data);
+        
+        });
+      }, []);
 
     return(
         <div>
             <HeaderDetails/>
+            <Body>
+                <ContainerDetails>
+                    <ContainerLeftColumn>
+                        <ContainerImage>
+                            <img src={pokemonInfo.sprites && pokemonInfo.sprites.front_default}  />
+                        </ContainerImage>
 
-            <ContainerDetails>
-                <ContainerLeftColumn>
-                    <ContainerImage>
-                        <img></img>
-                    </ContainerImage>
+                        <ContainerImage>
+                            <img src={pokemonInfo.sprites && pokemonInfo.sprites.back_default}/>
+                        </ContainerImage>
+                    </ContainerLeftColumn>
 
-                    <ContainerImage>
-                        <img></img>
-                    </ContainerImage>
-                </ContainerLeftColumn>
+                    <ContainerCenterColumn>
+                        <ContainerStats>
+                            {pokemonInfo.stats &&
+                            pokemonInfo.stats.map((stat) => {
+                                return (
+                                    <p key={stat.stat.name}>
+                                    <strong>{stat.stat.name}: </strong>
+                                    {stat.base_stat}
+                                    </p>
+                                );
+                            })}
+                        </ContainerStats>
+                    </ContainerCenterColumn>
 
-                <ContainerCenterColumn>
-                    <ContainerStats>
-                        <h2>Status</h2>
-                        <p>hp:</p>
-                        <p>attack:</p>
-                        <p>defense:</p>
-                        <p>special attack:</p>
-                        <p>special defense:</p>
-                        <p>speed:</p>
-                    </ContainerStats>
-                </ContainerCenterColumn>
-
-                <ContainerRightColumn>
-                    <ContainerTypes>
-                        <p>type1</p>
-                        <p>type2</p>
-                    </ContainerTypes>
-                    
-                    <ContainerMoves>
-                        <h2>Moves</h2>
-                        <p>move name1</p>
-                        <p>move name2</p>
-                        <p>move name3</p>
-                    </ContainerMoves>
-                </ContainerRightColumn>
-            </ContainerDetails>
+                    <ContainerRightColumn>
+                        <ContainerTypes>
+                            {pokemonInfo.types && pokemonInfo.types.map((type) => {
+                                return <p key={type.type.name}>{type.type.name}</p>;
+                            })}
+                        
+                        </ContainerTypes>
+                        
+                        <ContainerMoves>
+                            <h2><strong>Moves</strong></h2>
+                            {pokemonInfo.moves &&
+                            pokemonInfo.moves.map((move, index) => {
+                                return (
+                                index < 5 && <p key={move.move.name}>{move.move.name}</p>
+                                );
+                            })}
+                        </ContainerMoves>
+                    </ContainerRightColumn>
+                </ContainerDetails>
+            </Body>
+            <Footer></Footer>
         </div>
     )
     
