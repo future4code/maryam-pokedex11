@@ -8,6 +8,7 @@ const GlobalState = (props) =>
     
     const [pokeList, setPokeList] = useState([]);
     const [pokedexList, setPokedexList] = useState([]);
+    const [naPokedex, setNaPokedex] = useState(false)
 
 
     const moveToPokedex = (pokemonToAdd) => {
@@ -19,14 +20,65 @@ const GlobalState = (props) =>
     
         if (position === -1) {
             newPokedexList.push({ ...pokemonToAdd});
-            console.log(pokedexList)
+            alert("You added " + pokemonToAdd.name+ " to your pokedex!")
+            
+            
         } else {
-        
+            alert("You already added this pokemon!")
+
         }
     
         setPokedexList(newPokedexList);
-      };
+    };
+
+    const moveRemovePokedex = (pokemonToAdd) => {
+        const position = pokedexList.findIndex((item) => {
+          return item.id === pokemonToAdd.id;
+        });
     
+        let newPokedexList = [...pokedexList];
+    
+        if (position === -1) {
+            newPokedexList.push({ ...pokemonToAdd});
+            alert("You added " + pokemonToAdd.name+ " to your pokedex!")
+            
+            
+        } else {
+            
+            
+            
+            alert("You removed "+pokemonToAdd.name+" from your pokedex!" )
+                newPokedexList.splice(position, 1);
+                
+                
+            
+            
+            
+            
+        }
+    
+        setPokedexList(newPokedexList);
+    };
+
+
+    const removeFromPokedex = (pokemon) => {
+        
+        
+        const position = pokedexList.findIndex((item) => {
+            return item.name === pokemon.name;
+          });
+          
+        let newPokedexList = [...pokedexList];
+        
+        
+            newPokedexList.splice(position, 1);
+            
+            
+          setPokedexList(newPokedexList);
+        
+        console.log("lista nova atualizada", newPokedexList)
+    }
+
     useEffect(() => {
         axios.get("https://pokeapi.co/api/v2/pokemon?limit=20").then((res) => {
             setPokeList(res.data.results);
@@ -38,10 +90,10 @@ const GlobalState = (props) =>
         
       }, []);
 
-    const states= {pokeList,pokedexList}
-    const setters={setPokeList}
+    const states= {pokeList,pokedexList,naPokedex}
+    const setters={setPokeList,setNaPokedex}
     const requests={} 
-    const functions={moveToPokedex}
+    const functions={moveToPokedex,removeFromPokedex,moveRemovePokedex}
 
     
     return(

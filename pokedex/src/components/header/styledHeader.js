@@ -31,7 +31,7 @@ width: 100vw;
 
 z-index: -1;
 
-position:absolute;
+position:fixed;
 top: 0;
 
 
@@ -42,6 +42,11 @@ border-bottom: 5px solid black;
 animation-duration: 3s;
 
 `
+export const FakeHeader = styled.div `
+height: 86px;
+
+
+`
 
 export const Header = styled.div`
 display: flex;
@@ -49,8 +54,14 @@ align-items: center;
 justify-content: space-between;
 background-color: #ED3237;
 padding: 0 15px;
+width: 97.5vw;
 height: 86px;
 border-bottom: 5px solid black;
+position: fixed;
+top: 0px;
+left: 0;
+
+
 
 img{
     width: 60px;
@@ -70,5 +81,9 @@ button{
         transform: scale(1.1);
         
     }
+
+}
+h1{
+    text-transform: capitalize
 }
 `

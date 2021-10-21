@@ -4,22 +4,10 @@ import GlobalState from "../../context/GlobalState";
 import { GlobalContext } from "../../context/GlobalContext";
 import React, {useContext, useState, useEffect} from "react";
 import axios from "axios";
+import { ContainerButtons, ContainerCard } from "./styledCard";
 
 
-const ContainerCard=styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-border: 2px solid black;
-width: 250px;
-height: 250px;
-margin: 16px;
 
-`
-const ContainerButtons = styled.div`
-display: flex;
-
-`
 
 
   
@@ -33,6 +21,7 @@ const Card = (props) => {
     const {states, setters, requests, functions} = useContext(GlobalContext)
     
         useEffect(() => {
+            
           axios.get(props.pokemon && props.pokemon .url ?  props.pokemon.url : "").then((res) => {
             
         
@@ -42,22 +31,42 @@ const Card = (props) => {
         }, []);
         
         
-    
+    const renderizaCard = () =>
+    {
+        switch(props.naPokedex)
+        {   case true:
+                return <ContainerCard>
+                
+                <p><strong>{props.pokemon.name}</strong></p>
+                
+                <img src = {props.pokemon.sprites && props.pokemon.sprites.front_default}/>
+                <ContainerButtons>
+                    <button onClick = {() => functions.removeFromPokedex(props.pokemon)}><strong>Remove</strong></button>
+                    <button onClick = {() => goToDetails(props.pokemon.name)}><strong>Details</strong></button>
+                </ContainerButtons>
+                </ContainerCard>
+
+            case false:
+                return <ContainerCard>
+                
+                <p><strong>{props.pokemon.name}</strong></p>
+                
+                <img src = {pokemonInfo.sprites && pokemonInfo.sprites.front_default}/>
+                <ContainerButtons>
+                    <button onClick= {()=> functions.moveToPokedex(pokemonInfo)}><strong>Add</strong></button>
+                    <button onClick = {() => goToDetails(pokemonInfo.name)}><strong>Details</strong></button>
+                </ContainerButtons>
+            </ContainerCard>
+        }
+    }
 
     
         
     
     return(
-        <ContainerCard>
-            
-            <p>{props.pokemon.name}</p>
-            
-            <img src = {props.pokemon.sprites && props.pokemon.sprites.front_default}/>
-            <ContainerButtons>
-                <button onClick= {()=> functions.moveToPokedex(pokemonInfo)}>Adcionar</button>
-                <button onClick = {() => goToDetails(pokemonInfo.name)}>details</button>
-            </ContainerButtons>
-        </ContainerCard>
+        <div>
+            {renderizaCard()}
+        </div>
     )
 }
 
