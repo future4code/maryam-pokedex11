@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import styled, {keyframes} from "styled-components";
 import ImagemPokebola from "../../img/pokebola.png"
-import { Header, RedTransition} from "./styledHeader";
+import { Header, RedTransition, FakeHeader} from "./styledHeader";
 
 
 
@@ -14,6 +14,7 @@ const goToPokedex = () => {
 
     return(
         <div>
+            <FakeHeader/>
             <Header>
                 <button onClick={goToPokedex}><b>Pokedex</b></button>
                 <h1>Pokémons</h1>
