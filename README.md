@@ -8,13 +8,12 @@ Nome dos integrantes:
 Link do Surge: https://abstracted-grade.surge.sh/
 
 O que funciona:
-Tudo
+Tudo (transições entre páginas; botões de adicionar/remover/ver detalhes/acesso páginas; funcionalidades para exibir a lista de pokemons e construir a pokedex de acordo com as escolhas do usuário e acesso aos detalhes de cada pokemon).
 
 O que não funciona: 
 Nada
 
-
-![image](https://user-images.githubusercontent.com/87434836/138351337-c1d83eef-f4fb-4668-81a5-c9ba20b9fb4d.png)
-![image](https://user-images.githubusercontent.com/87434836/138351412-cdad806c-bfde-4601-a742-ad4e9052f42a.png)
-![image](https://user-images.githubusercontent.com/87434836/138351448-e596ed9e-083a-441d-a324-8ca31e2953dd.png)
+![image](https://user-images.githubusercontent.com/88296045/138455391-0259551e-08c4-4b2d-b4f6-e0d04fa09b12.png)
+![image](https://user-images.githubusercontent.com/88296045/138455457-414026a1-25c7-40cc-b05e-5b85760471c5.png)
+![image](https://user-images.githubusercontent.com/88296045/138455536-46ddecff-95d2-4a4a-bf29-36899d39dae2.png)
 
